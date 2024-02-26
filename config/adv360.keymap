@@ -45,11 +45,11 @@
 
     default_layer {
       bindings = <
-        &kp PSCRN &kp N1    &kp N2    &kp N3   &kp N4     &kp N5 &mo 3                                                                             &mo 2    &kp N6    &kp N7    &kp N8    &kp N9   &kp N0   &kp PSCRN
-        &kp TAB   &kp Q     &kp W     &kp E    &kp R      &kp T  &kp RIGHT                                                                         &kp UP   &kp Y     &kp U     &kp I     &kp O    &kp P    &kp BSLH
-        &kp ESC   &kp A     &kp S     &kp D    &kp F      &kp G  &kp LEFT        &hm LCTRL TAB &hmc LALT 0  &hm RALT DEL &hm RCTRL SQT             &kp DOWN &kp H     &kp J     &kp K     &kp L    &kp SEMI &kp SQT
-        &kp LSHFT &kp Z     &kp X     &kp C    &kp V      &kp B                  &hm LS(LC(LA(LGUI))) HOME  &hm LS(LC(LA(LGUI))) PG_UP                      &kp N     &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-        &mo 5     &kp LGUI  &kp GRAVE &kp BSLH &kp EQUAL               &kp SPACE &hm LSHIFT ESC &hmo 1 END  &hmo 1 PG_DN &hm RSHIFT ENTER &kp BSPC                    &kp MINUS &kp LBKT  &kp RBKT &kp RGUI &mo 5
+        &kp PSCRN  &kp N1      &kp N2    &kp N3   &kp N4     &kp N5 &mo 3                                                                             &mo 2    &kp N6    &kp N7    &kp N8    &kp N9   &kp N0     &kp PSCRN
+        &caps_word &kp Q       &kp W     &kp E    &kp R      &kp T  &kp RIGHT                                                                         &kp UP   &kp Y     &kp U     &kp I     &kp O    &kp P      &kp DEL
+        &kp TAB    &kp A       &kp S     &kp D    &kp F      &kp G  &kp LEFT        &hm LCTRL TAB &hmc LALT 0  &hm RALT DEL &hm RCTRL SQT             &kp DOWN &kp H     &kp J     &kp K     &kp L    &kp SEMI   &kp SQT
+        &kp LSHFT  &kp Z       &kp X     &kp C    &kp V      &kp B                  &hm LS(LC(LA(LGUI))) HOME  &hm LS(LC(LA(LGUI))) PG_UP                      &kp N     &kp M     &kp COMMA &kp DOT  &kp FSLH   &kp RSHFT
+        &mo 4      &kp LGUI    &kp GRAVE &kp BSLH &kp EQUAL               &kp SPACE &hm LSHIFT ESC &hmo 1 END  &hmo 1 PG_DN &hm RSHIFT ENTER &kp BSPC                    &kp MINUS &kp LBKT  &kp RBKT &kp RGUI   &mo 4
       >;
     };
     fn {
