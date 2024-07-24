@@ -68,8 +68,8 @@
         HML(hmo, "MODS_LAYER", 200)
 
         HMT(hmt, "MODS_THUMB", 150, KEYS_NONE)
-        HMT(hmr, "MODS_RIGHT", 150, KEYS_LEFT)
-        HMT(hml, "MODS_LEFT",  150, KEYS_RIGHT)
+        HMT(hmr, "MODS_RIGHT", 150, KEYS_LEFT THUMBS_LEFT)
+        HMT(hml, "MODS_LEFT",  150, KEYS_RIGHT THUMBS_RIGHT)
 
         HMT(hmrs, "MODS_RIGHT_SLOW", 180, KEYS_LEFT)
         HMT(hmls, "MODS_LEFT_SLOW",  180, KEYS_RIGHT)
@@ -94,7 +94,7 @@
       bindings = <
         &kp PSCRN  &kp N1       &kp N2      &kp N3       &kp N4       &kp N5 &mo 3                                                            &mo 2    &kp N6 &kp N7       &kp N8       &kp N9       &kp N0          &kp PSCRN
         &kp CAPS   &kp Q        &kp W       &kp E        &kp R        &kp T  &kp RIGHT                                                        &kp UP   &kp Y  &kp U        &kp I        &kp O        &kp P           &kp DEL
-        &kp TAB    &kp A        &kp S       &kp D        &hml LSHFT F &kp G  &kp LEFT  &hmt LALT TAB &hmc LGUI 0 &hmt LGUI CAPS &hmt RALT DEL &kp DOWN &kp H  &hmr RSHFT J &kp K        &kp L        &kp SEMI        &kp SQT
+        &kp TAB    &kp A        &kp S       &kp D        &hml LSHFT F &kp G  &kp LEFT  &hmt LALT TAB &hmc LGUI 0 &hmt LGUI CAPS &hmt RALT SQT &kp DOWN &kp H  &hmr RSHFT J &kp K        &kp L        &kp SEMI        &kp SQT
         &kp LSHFT  &kp Z        &kp X       &kp C        &kp V        &kp B                                 &hmo 3 HOME &hmo 2 PG_UP                   &kp N  &kp M        &kp COMMA    &kp DOT      &kp FSLH        &kp RSHFT
         &mo 4      &kp LGUI     &kp GRAVE   &kp BSLH     &kp EQUAL             &kp SPACE &hmt LCTRL ESC &hmo 1 END &hmo 1 PG_DN &hmt RCTRL ENTER &kp BSPC     &kp MINUS    &kp LBKT     &kp RBKT     &kp RGUI        &mo 4
       >;
