@@ -38,14 +38,15 @@
         hold-trigger-key-positions = <KEYS>; \
     };
 
-#define HMH(ID, NAME, TERM) \
+#define HMH(ID, NAME, TERM, KEYS) \
     ID: mod_hold_##ID { \
         compatible = "zmk,behavior-hold-tap"; \
         label = NAME; \
-        #binding-cells = <2>; \
         tapping-term-ms = <TERM>; \
-        flavor = "hold-preferred"; \
-        bindings = <&kp>, <&kp>; \
+        flavor = "tap-preferred"; \
+        #binding-cells = <2>; \
+        bindings = <&mo>, <&kp>; \
+        hold-trigger-key-positions = <KEYS>; \
     };
 
 #define HML(ID, NAME, TERM) \
@@ -59,12 +60,15 @@
         bindings = <&mo>, <&kp>; \
     };
 
+&caps_word {
+    continue-list = <UNDERSCORE SEMI PIPE AMPS MINUS BACKSPACE DELETE LSHFT RSHFT>;
+};
+
 / {
     behaviors {
         #include "macros.dtsi"
         #include "version.dtsi"
 
-        HMH(hmh, "MODS_HOLD", 200)
         HML(hmo, "MODS_LAYER", 200)
 
         HMT(hmt, "MODS_THUMB", 150, KEYS_NONE)
@@ -73,6 +77,9 @@
 
         HMT(hmrs, "MODS_RIGHT_SLOW", 180, KEYS_LEFT)
         HMT(hmls, "MODS_LEFT_SLOW",  180, KEYS_RIGHT)
+
+        HMH(hmlr, "MODS_LAYER_LEFT", 150, THUMBS_LEFT)
+        HMH(hmll, "MODS_LAYER_RIGHT", 150, THUMBS_RIGHT)
 
         hmc: homerow_mods_caps {
                 compatible = "zmk,behavior-hold-tap";
@@ -84,37 +91,34 @@
         };
     };
 
-
   keymap {
     compatible = "zmk,keymap";
 
-    // &kp TAB    &hmls LGUI A &hml LALT S &hml LCTRL D &hml LSHFT F &kp G  &kp LEFT  &hmh LALT TAB &hmc LGUI 0 &hmh LGUI CAPS &hmh RALT DEL &kp DOWN &kp H  &hmr RSHFT J &hmr RCTRL K &hmr RALT L  &hmrs RGUI SEMI &kp SQT
-
     default_layer {
       bindings = <
-        &kp PSCRN  &kp N1       &kp N2      &kp N3       &kp N4       &kp N5 &mo 3                                                            &mo 2    &kp N6 &kp N7       &kp N8       &kp N9       &kp N0          &kp PSCRN
-        &kp CAPS   &kp Q        &kp W       &kp E        &kp R        &kp T  &kp RIGHT                                                        &kp UP   &kp Y  &kp U        &kp I        &kp O        &kp P           &kp DEL
-        &kp TAB    &kp A        &kp S       &kp D        &hml LSHFT F &kp G  &kp LEFT  &hmt LALT TAB &hmc LGUI 0 &hmt LGUI DEL &hmt RALT SQT  &kp DOWN &kp H  &hmr RSHFT J &kp K        &kp L        &kp SEMI        &kp SQT
-        &kp LSHFT  &kp Z        &kp X       &kp C        &kp V        &kp B                                 &hmo 3 HOME &hmo 2 PG_UP                   &kp N  &kp M        &kp COMMA    &kp DOT      &kp FSLH        &kp RSHFT
-        &mo 4      &hmc LGUI 0  &kp GRAVE   &kp BSLH     &kp EQUAL             &kp SPACE &hmt LCTRL ESC &hmo 1 END &hmo 1 PG_DN &hmt RCTRL ENTER &kp BSPC     &kp MINUS    &kp LBKT     &kp RBKT     &hmt RGUI DEL   &mo 4
+        &kp PSCRN  &kp N1     &kp N2      &kp N3       &kp N4       &kp N5 &mo 3                                                             &mo 2    &kp N6 &kp N7       &kp N8     &kp N9    &kp N0    &kp PSCRN
+        &kp CAPS   &kp Q      &kp W       &kp E        &kp R        &kp T  &kp RIGHT                                                         &kp UP   &kp Y  &kp U        &kp I      &kp O     &kp P     &kp DEL
+        &kp TAB    &kp A      &kp S       &kp D        &hml LSHFT F &kp G  &kp LEFT  &hmt LALT TAB  &hmc LGUI 0 &hmt RGUI DEL &hmt RALT SQT  &kp DOWN &kp H  &hmr RSHFT J &kp K      &kp L     &kp SEMI  &kp SQT
+        &kp LSHFT  &kp Z      &kp X       &kp C        &kp V        &kp B                           &hmo 3 HOME &hmo 2 PG_UP                          &kp N  &kp M        &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+        &mo 4      &caps_word &kp GRAVE   &kp BSLH     &kp EQUAL           &kp SPACE &hmt LCTRL ESC &hmo 1 END  &hmo 1 PG_DN &hmt RCTRL ENTER &kp BSPC       &kp MINUS    &kp LBKT   &kp RBKT  &kp DEL   &mo 4
       >;
     };
     fn {
       bindings = <
-        &trans &kp F1  &kp F2   &kp F3    &kp F4    &kp F5    &kp C_PP                                       &kp C_MUTE     &kp F6    &kp F7     &kp F8     &kp F9     &kp F10   &trans
-        &trans &trans  &trans   &trans    &trans    &trans    &kp C_NEXT                                     &kp C_VOL_UP   &kp HOME  &kp PG_DN  &kp PG_UP  &kp END    &trans    &trans
-        &trans &trans  &trans   &trans    &trans    &trans    &kp C_PREV    &trans &trans &trans &trans      &kp C_VOL_DN   &kp LEFT  &kp DOWN   &kp UP     &kp RIGHT  &trans    &trans
-        &trans &trans  &trans   &trans    &trans    &trans                         &trans &trans                            &trans    &trans     &trans     &trans     &trans    &trans
-        &trans &trans  &trans   &trans    &trans                     &trans &trans &trans &trans &trans &trans                        &trans     &trans     &trans     &trans    &trans
+        &kp F11 &kp F1  &kp F2   &kp F3    &kp F4    &kp F5    &kp C_PP                                       &kp C_MUTE     &kp F6      &kp F7       &kp F8       &kp F9       &kp F10     &kp F12
+        &trans  &trans  &trans   &trans    &trans    &trans    &kp C_NEXT                                     &kp C_VOL_UP   &kp HOME    &kp PG_DN    &kp PG_UP    &kp END      &kp INS     &none
+        &trans  &trans  &trans   &trans    &trans    &trans    &kp C_PREV    &trans &trans &trans &trans      &kp C_VOL_DN   &kp LEFT    &kp DOWN     &kp UP       &kp RIGHT    &kp SLCK    &none
+        &trans  &trans  &trans   &trans    &trans    &trans                         &trans &trans                            &kp K_UNDO  &kp K_CUT    &kp K_COPY   &kp K_PASTE  &kp K_REDO  &none
+        &trans  &trans  &trans   &trans    &trans                     &trans &trans &trans &trans &trans &trans                          &none        &none        &none        &none       &none
       >;
     };
     mod {
       bindings = <
-        &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &none                                       &none &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR
-        &bootloader &none        &none        &none        &none        &none        &none                                       &none &none       &none        &none        &none        &none         &bootloader
-        &none       &none        &none        &none        &none        &none        &none      &none &none &none &none          &none &none       &none        &none        &none        &none         &none
-        &none       &none        &none        &none        &none   &none                              &none &none                      &none       &none        &none        &none        &none         &none
-        &none       &none        &none        &none        &none                          &none &none &none &none &none &none                      &none        &none        &none        &none         &none
+        &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bl BL_TOG                              &bl BL_TOG &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_CLR
+        &bootloader &none        &none        &none        &none        &none        &bl BL_SET 5                            &bl BL_INC &none       &none        &none        &none        &none         &bootloader
+        &none       &none        &none        &none        &none        &none        &bl BL_CYCLE  &none &none &none &none   &bl BL_DEC &none       &none        &none        &none        &none         &none
+        &none       &none        &none        &none        &none   &none                                 &none &none                    &none       &none        &none        &none        &none         &none
+        &none       &none        &none        &none        &none                             &none &none &none &none &none &none                    &none        &none        &none        &none         &none
       >;
     };
     keypad {
@@ -127,4 +131,63 @@
       >;
     };
   };
+
+  // keymap {
+  //   compatible = "zmk,keymap";
+  //
+  //   default_layer {
+  //     bindings = <
+  //       &none &none        &none       &none        &none        &none  &none                                                             &none   &none  &none        &none        &none       &none           &none
+  //       &none &kp Q        &kp W       &kp E        &kp R        &kp T  &none                                                             &none   &kp Y  &kp U        &kp I        &kp O       &kp P           &none
+  //       &none &hmls LGUI A &hml LALT S &hml LCTRL D &hml LSHFT F &kp G  &none          &hmll 6 TAB &none &none &hmlr 5 SQT                &none   &kp H  &hmr RSHFT J &hmr RCTRL K &hmr RALT L &hmrs RGUI SEMI &none
+  //       &none &kp Z        &kp X       &kp C        &kp V        &kp B                             &none &none                                    &kp N  &kp M        &kp COMMA    &kp DOT     &kp FSLH        &none
+  //       &none &none        &none       &none        &none                &hmll 4 SPACE &hmll 1 ESC &none &none &hmlr 3 ENTER &hmlr 2 BSPC                &none        &none        &none       &none           &none
+  //     >;
+  //   };
+  //   num {
+  //     bindings = <
+  //       &none &none     &none    &none      &none   &none       &none                                                          &none   &none  &none        &none        &none       &none           &none
+  //       &none &kp EQUAL  &kp N7  &kp N8     &kp N9  &kp SEMI    &none                                                          &none   &none  &none        &none        &none       &none           &none
+  //       &none &kp LBKT  &kp N4   &kp N5     &kp N6  &kp RBKT    &none              &kp MINUS &none &none &none                 &none   &none  &kp RSHFT    &kp RCTRL    &kp RALT    &kp RGUI        &none
+  //       &none &kp GRAVE &kp N1   &kp N2     &kp N3  &kp BSLH                                 &none &none                               &none  &none        &none        &none       &none           &none
+  //       &none &none     &none    &none      &none   &none                      &kp N0 &kp N0 &none &none &none  &none                         &none        &none        &none       &none           &none
+  //     >;
+  //   };
+  //   sym {
+  //     bindings = <
+  //       &none &none     &none    &none        &none     &none       &none                                                          &none   &none  &none        &none        &none       &none           &none
+  //       &none &kp COLON &kp AMPS   &kp STAR   &kp LPAR  &kp PLUS    &none                                                          &none   &none  &none        &none        &none       &none           &none
+  //       &none &kp LBRC  &kp DLLR   &kp PRCNT  &kp CARET &kp RBRC    &none              &kp UNDER  &none &none &none                &none   &none  &kp RSHFT    &kp RCTRL    &kp RALT    &kp RGUI        &none
+  //       &none &kp TILDE &kp EXCL   &kp AT     &kp HASH  &kp PIPE                                  &none &none                              &none  &none        &none        &none       &none           &none
+  //       &none &none     &none      &none      &none     &none                   &kp LPAR &kp RPAR &none &none &none  &none                        &none        &none        &none       &none           &none
+  //     >;
+  //   };
+  //   fun {
+  //     bindings = <
+  //       &none &none    &none    &none      &none   &none           &none                                                    &none   &none  &none        &none        &none       &none       &none
+  //       &none &kp F12  &kp F7   &kp F8     &kp F9  &kp PSCRN       &none                                                    &none   &none  &none        &none        &none       &none       &none
+  //       &none &kp F11  &kp F4   &kp F5     &kp F6  &kp SLCK        &none          &kp K_APP &none &none &none               &none   &none  &kp RSHFT    &kp RCTRL    &kp RALT    &kp RGUI    &none
+  //       &none &kp F10  &kp F1   &kp F2     &kp F3  &kp PAUSE_BREAK                          &none &none                             &none  &none        &none        &none       &none       &none
+  //       &none &none    &none    &none      &none   &none                  &kp SPACE &kp ESC &none &none &none  &none                       &none        &none        &none       &none       &none
+  //     >;
+  //   };
+  //   nav {
+  //     bindings = <
+  //       &none  &none     &none      &none       &none      &none  &none                                                 &none   &none       &none        &none        &none        &none         &none
+  //       &none  &none     &none      &none       &none      &none  &none                                                 &none   &kp HOME    &kp PG_DN    &kp PG_UP    &kp END      &kp CAPS      &none
+  //       &none  &kp LGUI  &kp LALT   &kp LCTRL   &kp LSHFT  &none  &none          &none &none &none &kp DEL              &none   &kp LEFT    &kp DOWN     &kp UP       &kp RIGHT    &caps_word    &none
+  //       &none  &none     &none      &none       &none      &none                       &none &none                              &kp K_UNDO  &kp K_CUT    &kp K_COPY   &kp K_PASTE  &kp K_REDO    &none
+  //       &none  &none     &none      &none       &none                      &none &none &none &none &kp ENTER &kp BSPC                       &none        &none        &none        &none         &none
+  //     >;
+  //   };
+  //   med {
+  //     bindings = <
+  //       &none  &none     &none      &none       &none      &none  &none                                                 &none   &none        &none         &none         &none        &none         &none
+  //       &none  &none     &none      &none       &none      &none  &none                                                 &none   &bl BL_TOG   &bl BL_DEC    &bl BL_INC    &bl BL_INC   &bl BL_CYCLE  &none
+  //       &none  &kp LGUI  &kp LALT   &kp LCTRL   &kp LSHFT  &none  &none          &none &none &none &bt BT_SEL 5         &none   &kp C_PREV   &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT   &kp C_PP      &none
+  //       &none  &none     &none      &none       &none      &none                         &none &none                            &bt BT_SEL 0 &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3 &bt BT_CLR    &none
+  //       &none  &none     &none      &none       &none                     &none &none &none &none &kp C_MUTE &kp C_STOP                      &none         &none         &none        &none         &none
+  //     >;
+  //   };
+  // };
 };
