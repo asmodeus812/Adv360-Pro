@@ -5,10 +5,21 @@ Many thanks to all those who have submitted issues and pull requests to make thi
 ## Config repo
 
 14/3/2024 - Fix Makefile errors that prevent builds on macOS [#409](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/409)
+11/27/2024 - Fix misattributed PR link in changelog [#590](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/590)
 
 18/2/2024 - Fix version.dtsi reset after build when running local builds [#385](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/385)
 
-12/2/2024 - Update GitHub build workflow to use the latest actions [#376](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/376)
+4/15/2024 - Remove redundant info from documentation [#445](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/445)
+
+4/7/2024 - Add documentation for new layer colors, and configurable modifier indicator color [#431](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/431)
+
+4/5/2024 - Update base ZMK, remove deprecated attributes, change flashing cmake [#426](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/426)
+
+3/14/2024 - Fix Makefile errors that prevent builds on macOS [#409](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/409)
+
+2/18/2024 - Fix version.dtsi reset after build when running local builds [#385](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/385)
+
+2/12/2024 - Update GitHub build workflow to use the latest actions [#376](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/376)
 
 2/2/2024 - Makefile enhancements (build left side firmware only, separate clean targets for firmware and docker, reset of version.dtsi after build) [#363](https://github.com/KinesisCorporation/Adv360-Pro-ZMK/pull/363)
 
