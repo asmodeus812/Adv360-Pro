@@ -66,8 +66,8 @@
         #include "macros.dtsi"
         #include "version.dtsi"
 
-        LMT(lkp, 125,  0,  0, KEYS_NONE, "hold-preferred")
-        HMT(hmh, 125,  0,  0, KEYS_NONE, "hold-preferred")
+        LMT(lkp, 115,  0,  0, KEYS_NONE, "hold-preferred")
+        HMT(hmh, 115,  0,  0, KEYS_NONE, "hold-preferred")
 
         HMT(hmt, 160, 180, 100, KEYS_NONE, "balanced")
         HMT(hmr, 115, 0,   0,   KEYS_LEFT  THUMBS_LEFT,  "tap-preferred")
@@ -90,11 +90,11 @@
         default_layer {
             display-name = "Base";
             bindings = <
-                &kp PSCRN  &kp N1    &kp N2     &kp N3    &kp N4       &kp N5 &mo 3                                                                   &mo 2    &kp N6 &kp N7       &kp N8     &kp N9    &kp N0      &kp SLCK
-                &kp CAPS   &kp Q     &kp W      &kp E     &kp R        &kp T  &kp RIGHT                                                               &kp UP   &kp Y  &kp U        &kp I      &kp O     &kp P       &kp DEL
-                &kp TAB    &kp A     &kp S      &kp D     &hml LSHFT F &kp G  &kp LEFT  &hmh LGUI TAB  &hmh HYPER CAPS &hmh HYPER DEL &hmh RGUI SQT   &kp DOWN &kp H  &hmr RSHFT J &kp K      &kp L     &kp SEMI    &kp SQT
-                &kp LSHFT  &kp Z     &kp X      &kp C     &kp V        &kp B                           &lkp 1 HOME    &lkp 1 PG_UP                             &kp N  &kp M        &kp COMMA  &kp DOT   &kp FSLH    &kp RSHFT
-                &mo 4      &lcw 3 0  &kp GRAVE  &kp BSLH  &kp EQUAL     &hmt LALT SPACE &hmh LCTRL ESC &lkp 1 END     &lkp 1 PG_DN &hmh RCTRL ENTER &hmt RALT BSPC    &kp MINUS    &kp LBKT   &kp RBKT  &lkp 2 DEL  &mo 4
+                &kp PSCRN  &kp N1     &kp N2     &kp N3    &kp N4       &kp N5 &mo 3                                                                   &mo 2    &kp N6 &kp N7       &kp N8     &kp N9    &kp N0      &kp SLCK
+                &kp CAPS   &kp Q      &kp W      &kp E     &kp R        &kp T  &kp RIGHT                                                               &kp UP   &kp Y  &kp U        &kp I      &kp O     &kp P       &kp DEL
+                &kp TAB    &kp A      &kp S      &kp D     &hml LSHFT F &kp G  &kp LEFT  &hmh LGUI TAB  &hmh HYPER CAPS &hmh HYPER DEL &hmh RGUI SQT   &kp DOWN &kp H  &hmr RSHFT J &kp K      &kp L     &kp SEMI    &kp SQT
+                &kp LSHFT  &kp Z      &kp X      &kp C     &kp V        &kp B                           &lkp 1 HOME    &lkp 1 PG_UP                             &kp N  &kp M        &kp COMMA  &kp DOT   &kp FSLH    &kp RSHFT
+                &mo 4      &caps_word &kp GRAVE  &kp BSLH  &kp EQUAL     &hmt LALT SPACE &hmh LCTRL ESC &lkp 3 END     &lkp 2 PG_DN &hmh RCTRL ENTER &hmt RALT BSPC    &kp MINUS    &kp LBKT   &kp RBKT  &kp DEL  &mo 4
             >;
         };
         fn {
@@ -112,7 +112,7 @@
             bindings = <
                 &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bl BL_TOG                              &bl BL_TOG &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4 &bt BT_CLR_ALL
                 &bootloader &none        &none        &none        &none        &none        &bl BL_SET 5                            &bl BL_INC &none        &none        &none        &none        &none         &bootloader
-                &none       &none        &none        &none        &none        &none        &bl BL_CYCLE  &none &none &none &none   &bl BL_DEC &none        &none        &none        &none        &none         &none
+                &sys_reset  &none        &none        &none        &none        &none        &bl BL_CYCLE  &none &none &none &none   &bl BL_DEC &none        &none        &none        &none        &none         &sys_reset
                 &none       &none        &none        &none        &none        &none                            &none &none                    &none        &none        &none        &none        &none         &none
                 &none       &none        &none        &bl BL_OFF   &bl BL_ON                         &none &none &none &none &none &none                     &bl BL_DEC   &bl BL_INC   &none        &none         &none
             >;
