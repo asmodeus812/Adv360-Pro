@@ -103,21 +103,21 @@
         default_layer {
             display-name = "Def";
             bindings = <
-                &none &kp N1     &kp N2     &kp N3    &kp N4       &kp N5 &mo 3                                                              &mo 2    &kp N6 &kp N7       &kp N8     &kp N9   &kp N0    &none
-                &none &kp Q      &kp W      &kp E     &kp R        &kp T  &kp RIGHT                                                          &kp UP   &kp Y  &kp U        &kp I      &kp O    &kp P     &none
-                &none &kp A      &kp S      &kp D     &hml LSHFT F &kp G  &kp LEFT    &lcw LGUI 0 &kp HYPER   &kp HYPER &hmh RGUI DEL        &kp DOWN &kp H  &hmr RSHFT J &kp K      &kp L    &kp SEMI  &none
-                &none &kp Z      &kp X      &kp C     &kp V        &kp B                          &lkp 1 HOME &lkp 1 PG_UP                            &kp N  &kp M        &kp COMMA  &kp DOT  &kp FSLH  &none
-                &none &kp TAB    &kp SQT    &kp BSLH  &kp EQUAL    &hmt LALT SPACE &hmh LCTRL ESC &lkp 3 END  &lkp 2 PG_DN &hmh RCTRL ENTER &hmt RALT BSPC   &kp MINUS    &kp LBKT   &kp RBKT &kp GRAVE &none
+                &macro_backtick &kp N1   &kp N2     &kp N3    &kp N4       &kp N5 &mo 3                                                              &mo 2    &kp N6 &kp N7       &kp N8     &kp N9   &kp N0    &macro_block
+                &macro_angles   &kp Q    &kp W      &kp E     &kp R        &kp T  &kp RIGHT                                                          &kp UP   &kp Y  &kp U        &kp I      &kp O    &kp P     &macro_brackets
+                &macro_quotes   &kp A    &kp S      &kp D     &hml LSHFT F &kp G  &kp LEFT    &lcw LGUI 0 &kp HYPER   &kp HYPER &hmh RGUI DEL        &kp DOWN &kp H  &hmr RSHFT J &kp K      &kp L    &kp SEMI  &macro_dquotes
+                &macro_parens   &kp Z    &kp X      &kp C     &kp V        &kp B                          &lkp 1 HOME &lkp 1 PG_UP                            &kp N  &kp M        &kp COMMA  &kp DOT  &kp FSLH  &macro_braces
+                &none           &kp TAB  &kp SQT    &kp BSLH  &kp EQUAL    &hmt LALT SPACE &hmh LCTRL ESC &lkp 3 END  &lkp 2 PG_DN &hmh RCTRL ENTER &hmt RALT BSPC   &kp MINUS    &kp LBKT   &kp RBKT &kp GRAVE &none
             >;
         };
         fun {
             display-name = "Fun";
             bindings = <
-                &kp F10 &kp F1    &kp F2         &kp F3       &kp F4          &kp F5           &kp C_PP                                      &kp C_MUTE    &kp F6       &kp F7       &kp F8       &kp F9        &kp F10   &kp F12
-                &trans  &kp SLCK  &kp RA(LEFT)   &kp RA(DOWN) &kp RA(UP)      &kp RA(RIGHT)    &kp C_NEXT                                    &kp C_VOL_UP  &kp LC(LEFT) &kp LC(DOWN) &kp LC(UP)   &kp LC(RIGHT) &kp PSCRN &trans
-                &trans  &kp LSHFT &mmv MOVE_LEFT &mmv MOVE_UP &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &kp C_PREV  &mkp MB3 &trans &trans &mkp MB3   &kp C_VOL_DN  &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT     &kp RSHFT &trans
-                &trans  &mo 1     &kp RG(LEFT)   &kp RG(DOWN) &kp RG(UP)      &kp RG(RIGHT)                         &trans &trans                          &kp HOME     &kp PG_DN    &kp PG_UP    &kp END       &mo 1     &trans
-                &trans  &trans    &kp  C_PP      &kp C_PREV   &kp C_NEXT                          &mkp MB1 &mkp MB2 &trans &trans &mkp MB2 &mkp MB1                     &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE    &trans    &trans
+                &kp F10  &kp F1    &kp F2         &kp F3       &kp F4          &kp F5           &kp C_PP                                      &kp C_MUTE    &kp F6       &kp F7       &kp F8       &kp F9        &kp F10   &kp F12
+                &kp SLCK &kp LALT  &kp RA(LEFT)   &kp RA(DOWN) &kp RA(UP)      &kp RA(RIGHT)    &kp C_NEXT                                    &kp C_VOL_UP  &kp LC(LEFT) &kp LC(DOWN) &kp LC(UP)   &kp LC(RIGHT) &kp RALT  &kp PSCRN
+                &none    &kp LSHFT &mmv MOVE_LEFT &mmv MOVE_UP &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &kp C_PREV  &mkp MB3 &trans &trans &mkp MB3   &kp C_VOL_DN  &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT     &kp RSHFT &none
+                &none    &kp LCTRL &kp RG(LEFT)   &kp RG(DOWN) &kp RG(UP)      &kp RG(RIGHT)                         &trans &trans                          &kp HOME     &kp PG_DN    &kp PG_UP    &kp END       &kp RCTRL &none
+                &none    &kp LGUI  &kp  C_PP      &kp C_PREV   &kp C_NEXT                          &mkp MB1 &mkp MB2 &trans &trans &mkp MB2 &mkp MB1                     &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE    &kp RGUI  &none
             >;
         };
         mod {
