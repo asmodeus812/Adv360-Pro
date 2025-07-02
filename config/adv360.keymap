@@ -111,7 +111,7 @@
                 &kpp LALT  CAPS &kp Q    &kp W      &kp E     &kp R      &kp T  &kp RIGHT                                                     &kp UP   &kp Y  &kp U        &kp I      &kp O    &kp P     &kpp RALT DEL
                 &kpp LSHFT ESC  &kp A    &kp S      &kp D     &kp F      &kp G  &kp LEFT     &lcw 1 0    &mo 3     &mo 2 &lkp 1 DEL           &kp DOWN &kp H  &kp J        &kp K      &kp L    &kp SEMI  &kpp RSHFT ENTER
                 &kpp LCTRL TAB  &kp Z    &kp X      &kp C     &kp V      &kp B                           &kp LGUI  &kp RGUI                            &kp N  &kp M        &kp COMMA  &kp DOT  &kp FSLH  &kpp RCTRL SQT
-                &lkp LGUI 3     &kp TAB  &kp SQT    &kp BSLH  &kp EQUAL  &kpl LSHFT SPACE &kpp LCTRL ESC &kp LALT  &kp RALT &kpp RCTRL ENTER &kpr RSHFT BSPC  &kp MINUS    &kp LBKT   &kp RBKT &kp GRAVE &lkp RGUI 2
+                &lkp 3 LGUI     &kp TAB  &kp SQT    &kp BSLH  &kp EQUAL  &kpl LSHFT SPACE &kpp LCTRL ESC &kp LALT  &kp RALT &kpp RCTRL ENTER &kpr RSHFT BSPC  &kp MINUS    &kp LBKT   &kp RBKT &kp GRAVE &lkp 2 RGUI
             >;
         };
         fun {
