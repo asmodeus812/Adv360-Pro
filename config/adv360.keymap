@@ -41,7 +41,7 @@
         mods = <(MRPH)>; \
     };
 
-#define SUPER(ID, FIRST, SECOND, TERM, QTAP, RPI, KEYS, FLAVE) \
+#define SUPER(ID, FIRST, SECOND, TERM, QTAP, RPI, KEYS, FLAVE, ...) \
     ID: mod_tap_##ID { \
         compatible = "zmk,behavior-hold-tap"; \
         quick_tap_ms = <QTAP>; \
@@ -51,6 +51,8 @@
         bindings = <&FIRST>, <&SECOND>; \
         require-prior-idle-ms = <RPI>; \
         hold-trigger-key-positions = <KEYS>; \
+        hold-while-undecided-linger; \
+        __VA_ARGS__ \
     };
 
 &sk {
@@ -72,12 +74,13 @@
         #include "macros.dtsi"
         #include "version.dtsi"
 
-        SUPER(lkp, mo, kp,        140, 185, 0, KEYS_NONE, "hold-preferred")
-        SUPER(kpp, kp, kp,        140, 0,   0, KEYS_NONE, "hold-preferred")
-        SUPER(lcw, mo, caps_word, 140, 0,   0, KEYS_NONE, "hold-preferred")
+        SUPER(lcwm, mo, caps_word, 135, 0,   0, KEYS_NONE, "hold-preferred")
+        SUPER(lcwp, kp, caps_word, 135, 0,   0, KEYS_NONE, "hold-preferred")
 
-        SUPER(kpr, kp, kp, 140, 185, 0, KEYS_LEFT  THUMBS_LEFT,  "tap-preferred")
-        SUPER(kpl, kp, kp, 140, 0,   0, KEYS_RIGHT THUMBS_RIGHT, "tap-preferred")
+        SUPER(kpp, kp, kp, 145, 165, 25, KEYS_NONE,  "balanced")
+        SUPER(lkp, mo, kp, 145, 165, 25, KEYS_NONE,  "balanced")
+        SUPER(kpr, kp, kp, 145, 165, 25, KEYS_LEFT,  "balanced")
+        SUPER(kpl, kp, kp, 145, 165, 25, KEYS_RIGHT, "balanced")
 
         MORPH(one,   EXCL,   N1, MOD_LSFT|MOD_RSFT)
         MORPH(two,   AT,     N2, MOD_LSFT|MOD_RSFT)
@@ -97,21 +100,21 @@
         /* default_layer { */
             /* display-name = "Def"; */
             /* bindings = < */
-                /* &none   &none       &none   &none    &none      &none       &trans                                      &trans  &none     &none       &none     &none     &none     &none */
-                /* &none &kp Q      &kp W      &kp E     &kp R        &kp T  &kp RIGHT                                                          &kp UP   &kp Y  &kp U        &kp I      &kp O     &kp P         &none */
-                /* &none &lkpl 6 A  &lkpl 5 S  &lkpl 4 D &kpl LSHFT F &kp G  &kp LEFT    &lcw LGUI 0 &kp HYPER   &kp HYPER &kpp RGUI DEL        &kp DOWN &kp H  &kpr RSHFT J &lkpr 4 K  &lkpr 5 L &lkpr 6 SEMI  &none */
-                /* &none &kp Z      &kp X      &kp C     &kp V        &kp B                          &lkp 1 HOME &lkp 1 PG_UP                            &kp N  &kp M        &kp COMMA  &kp DOT   &kp FSLH      &none */
-                /* &none &kp TAB    &kp SQT    &kp BSLH  &kp EQUAL    &hmt LALT SPACE &kpp LCTRL ESC &lkp 3 END  &lkp 2 PG_DN &kpp RCTRL ENTER &hmt RALT BSPC   &kp MINUS    &kp LBKT   &kp RBKT  &kp GRAVE     &none */
+                /* &none          &kp N1     &kp N2    &kp N3    &kp N4     &kp N5    &mo 3                                                                           &mo 2           &kp N6  &kp N7     &kp N8     &kp N9      &kp N0      &none */
+                /* &lcwm 3 0      &kp Q      &kp W     &kp E     &kp R      &kp T     &kp RIGHT                                                                       &kp UP          &kp Y   &kp U      &kp I      &kp O       &kp P       &lkp 2 DEL */
+                /* &kpl LSHFT TAB &kp A      &kpl LGUI S     &kpl LALT D     &kpl LSHFT F      &kp G     &kp LEFT         &lcwm 1 0      &mo 3          &mo 2           &lkp 1 DEL       &kp DOWN        &kp H   &kpr RSHFT J      &kpr RALT K      &kpr RGUI L       &kp SEMI    &kpr RSHFT SQT */
+                /* &kpl LALT  ESC &kp Z      &kp X     &kp C     &kp V      &kp B                                     &kpp LALT END  &kpp RALT PG_UP                                  &kp N   &kp M      &kp COMMA  &kp DOT     &kp FSLH    &kpr RALT ENTER */
+                /* &kpl LGUI SLCK &lkp 1 TAB &kp GRAVE &kp BSLH  &kp EQUAL            &kpl LSHFT SPACE &kpp LCTRL ESC &kpp LGUI HOME &kpp RGUI PG_DN &kpp RCTRL ENTER &kpr RSHFT BSPC         &kp MINUS  &kp LBKT   &kp RBKT    &lkp 1 SQT  &kpr RGUI PSCRN */
             /* >; */
         /* }; */
         default_layer {
             display-name = "Def";
             bindings = <
-                &none           &kp N1   &kp N2     &kp N3    &kp N4     &kp N5 &mo 3                                                         &mo 2    &kp N6 &kp N7       &kp N8     &kp N9   &kp N0    &none
-                &kpp LALT  CAPS &kp Q    &kp W      &kp E     &kp R      &kp T  &kp RIGHT                                                     &kp UP   &kp Y  &kp U        &kp I      &kp O    &kp P     &kpp RALT DEL
-                &kpp LSHFT ESC  &kp A    &kp S      &kp D     &kp F      &kp G  &kp LEFT     &lcw 1 0    &mo 3     &mo 2 &lkp 1 DEL           &kp DOWN &kp H  &kp J        &kp K      &kp L    &kp SEMI  &kpp RSHFT ENTER
-                &kpp LCTRL TAB  &kp Z    &kp X      &kp C     &kp V      &kp B                           &kp LGUI  &kp RGUI                            &kp N  &kp M        &kp COMMA  &kp DOT  &kp FSLH  &kpp RCTRL SQT
-                &lkp 3 LGUI     &kp TAB  &kp SQT    &kp BSLH  &kp EQUAL  &kpl LSHFT SPACE &kpp LCTRL ESC &kp LALT  &kp RALT &kpp RCTRL ENTER &kpr RSHFT BSPC  &kp MINUS    &kp LBKT   &kp RBKT &kp GRAVE &lkp 2 RGUI
+                &lkp  4 ESC &kp N1     &kp N2    &kp N3    &kp N4     &kp N5    &mo 3                                                                           &mo 2           &kp N6  &kp N7     &kp N8     &kp N9      &kp N0      &lkp 4 BSPC
+                &lcwm 3 0   &kp Q      &kp W     &kp E     &kp R      &kp T     &kp RIGHT                                                                       &kp UP          &kp Y   &kp U      &kp I      &kp O       &kp P       &lkp 3 DEL
+                &lkp  1 TAB &kp A      &kp S     &kp D     &kp F      &kp G     &kp LEFT         &kpp LGUI DEL &mo 3       &mo 2        &lcwp RALT 0            &kp DOWN        &kp H   &kp J      &kp K      &kp L       &kp SEMI    &lkp 1 SQT
+                &lkp  2 ESC &kp Z      &kp X     &kp C     &kp V      &kp B                                    &lkp 3 END  &lkp 1 PG_UP                                         &kp N   &kp M      &kp COMMA  &kp DOT     &kp FSLH    &lkp 2 ENTER
+                &none       &lkp 1 TAB &kp GRAVE &kp BSLH  &kp EQUAL            &kpl LSHFT BSPC &kpp LCTRL ESC &lkp 1 HOME &lkp 2 PG_DN &kpp RCTRL ENTER &kpr RSHFT SPACE               &kp MINUS  &kp LBKT   &kp RBKT    &lkp 1 SQT  &none
             >;
         };
         fun {
