@@ -55,6 +55,19 @@
         __VA_ARGS__ \
     };
 
+#define PROFILE(ID, INDEX, LAYER_ON, LAYER_OFF) \
+    ID: bt_profile_##ID { \
+        compatible = "zmk,behavior-macro"; \
+        #binding-cells = <0>; \
+        wait-ms = <0>; \
+        tap-ms  = <0>; \
+        bindings = <&bt BT_SEL INDEX>, <&tog_off LAYER_OFF>, <&tog_on LAYER_ON> ; \
+    };
+
+
+#define L_OS_WIN  1
+#define L_OS_MAC  2
+
 &sk {
     quick-release;
     release-after-ms = <500>;
@@ -71,8 +84,19 @@
 
 / {
     behaviors {
-        #include "macros.dtsi"
-        #include "version.dtsi"
+        tog_on: toggle_layer_on_only {
+            compatible = "zmk,behavior-toggle-layer";
+            display-name = "Toggle Layer On";
+            #binding-cells = <1>;
+            toggle-mode = "on";
+        };
+
+        tog_off: toggle_layer_off_only {
+            compatible = "zmk,behavior-toggle-layer";
+            display-name = "Toggle Layer Off";
+            #binding-cells = <1>;
+            toggle-mode = "off";
+        };
 
         SUPER(lcwm, mo, caps_word, 135, 0,   0, KEYS_NONE, "hold-preferred")
         SUPER(lcwp, kp, caps_word, 135, 0,   0, KEYS_NONE, "hold-preferred")
@@ -92,59 +116,88 @@
         MORPH(eight, ASTRK,  N8, MOD_LSFT|MOD_RSFT)
         MORPH(nine,  LPAR,   N9, MOD_LSFT|MOD_RSFT)
         MORPH(zero,  RPAR,   N0, MOD_LSFT|MOD_RSFT)
+
+        PROFILE(pfl0, 0, L_OS_MAC, L_OS_WIN)
+        PROFILE(pfl1, 1, L_OS_MAC, L_OS_WIN)
+        PROFILE(pfl2, 2, L_OS_WIN, L_OS_MAC)
+        PROFILE(pfl3, 3, L_OS_WIN, L_OS_MAC)
+        PROFILE(pfl4, 4, L_OS_WIN, L_OS_MAC)
+
+        #include "macros.dtsi"
+        #include "version.dtsi"
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        /* default_layer { */
-            /* display-name = "Def"; */
-            /* bindings = < */
-                /* &none          &kp N1     &kp N2    &kp N3    &kp N4     &kp N5    &mo 3                                                                           &mo 2           &kp N6  &kp N7     &kp N8     &kp N9      &kp N0      &none */
-                /* &lcwm 3 0      &kp Q      &kp W     &kp E     &kp R      &kp T     &kp RIGHT                                                                       &kp UP          &kp Y   &kp U      &kp I      &kp O       &kp P       &lkp 2 DEL */
-                /* &kpl LSHFT TAB &kp A      &kpl LGUI S     &kpl LALT D     &kpl LSHFT F      &kp G     &kp LEFT         &lcwm 1 0      &mo 3          &mo 2           &lkp 1 DEL       &kp DOWN        &kp H   &kpr RSHFT J      &kpr RALT K      &kpr RGUI L       &kp SEMI    &kpr RSHFT SQT */
-                /* &kpl LALT  ESC &kp Z      &kp X     &kp C     &kp V      &kp B                                     &kpp LALT END  &kpp RALT PG_UP                                  &kp N   &kp M      &kp COMMA  &kp DOT     &kp FSLH    &kpr RALT ENTER */
-                /* &kpl LGUI SLCK &lkp 1 TAB &kp GRAVE &kp BSLH  &kp EQUAL            &kpl LSHFT SPACE &kpp LCTRL ESC &kpp LGUI HOME &kpp RGUI PG_DN &kpp RCTRL ENTER &kpr RSHFT BSPC         &kp MINUS  &kp LBKT   &kp RBKT    &lkp 1 SQT  &kpr RGUI PSCRN */
-            /* >; */
-        /* }; */
         default_layer {
-            display-name = "Def";
+            display-name = "Def-Base";
             bindings = <
-                &lkp  4 ESC &kp N1     &kp N2    &kp N3    &kp N4     &kp N5    &mo 3                                                                           &mo 2           &kp N6  &kp N7     &kp N8     &kp N9      &kp N0      &lkp 4 BSPC
-                &lcwm 3 0   &kp Q      &kp W     &kp E     &kp R      &kp T     &kp RIGHT                                                                       &kp UP          &kp Y   &kp U      &kp I      &kp O       &kp P       &lkp 3 DEL
-                &lkp  1 TAB &kp A      &kp S     &kp D     &kp F      &kp G     &kp LEFT         &kpp LGUI DEL &mo 3       &mo 2        &lcwp RALT 0            &kp DOWN        &kp H   &kp J      &kp K      &kp L       &kp SEMI    &lkp 1 SQT
-                &lkp  2 ESC &kp Z      &kp X     &kp C     &kp V      &kp B                                    &lkp 3 END  &lkp 1 PG_UP                                         &kp N   &kp M      &kp COMMA  &kp DOT     &kp FSLH    &lkp 2 ENTER
-                &none       &lkp 1 TAB &kp GRAVE &kp BSLH  &kp EQUAL            &kpl LSHFT BSPC &kpp LCTRL ESC &lkp 1 HOME &lkp 2 PG_DN &kpp RCTRL ENTER &kpr RSHFT SPACE               &kp MINUS  &kp LBKT   &kp RBKT    &lkp 1 SQT  &none
+                &lkp  8 PSCRN &kp N1     &kp N2    &kp N3    &kp N4     &kp N5    &mo 3                                                                           &mo 4           &kp N6  &kp N7     &kp N8     &kp N9      &kp N0      &lkp 8 BSPC
+                &lcwm 7 0     &kp Q      &kp W     &kp E     &kp R      &kp T     &kp RIGHT                                                                       &kp UP          &kp Y   &kp U      &kp I      &kp O       &kp P       &lkp 7 DEL
+                &lkp  5 TAB   &kp A      &kp S     &kp D     &kp F      &kp G     &kp LEFT         &kpp LGUI DEL &mo  3      &mo  4       &lcwp RALT 0            &kp DOWN        &kp H   &kp J      &kp K      &kp L       &kp SEMI    &lkp 5 SQT
+                &lkp  3 ESC   &kp Z      &kp X     &kp C     &kp V      &kp B                                    &lkp 3 END  &lkp 3 PG_UP                                         &kp N   &kp M      &kp COMMA  &kp DOT     &kp FSLH    &lkp 3 ENTER
+                &mo   4       &kp TAB    &kp GRAVE &kp BSLH  &kp EQUAL            &kpl LSHFT BSPC &kpp LCTRL ESC &lkp 5 HOME &lkp 5 PG_DN &kpp RCTRL ENTER &kpr RSHFT SPACE               &kp MINUS  &kp LBKT   &kp RBKT    &kp SQT     &mo 4
             >;
         };
-        fun {
-            display-name = "Fun";
+        default_win {
+            display-name = "Def-Mac";
             bindings = <
-                &kp F10         &kp F1    &kp F2         &kp F3       &kp F4          &kp F5           &kp C_PP                                 &kp C_MUTE    &kp F6       &kp F7       &kp F8       &kp F9        &kp F10   &kp F12
-                &macro_backtick &kp LALT  &kp LA(LEFT)   &kp LA(DOWN) &kp LA(UP)      &kp LA(RIGHT)    &kp C_NEXT                               &kp C_VOL_UP  &kp RC(LEFT) &kp RC(DOWN) &kp RC(UP)   &kp RC(RIGHT) &kp RALT  &macro_block
-                &macro_parens   &kp LSHFT &mmv MOVE_LEFT &mmv MOVE_UP &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &kp C_PREV  &trans &trans &trans &trans  &kp C_VOL_DN  &kp LEFT     &kp DOWN     &kp UP       &kp RIGHT     &kp RSHFT &macro_braces
-                &macro_quotes   &kp LCTRL &kp LG(LEFT)   &kp LG(DOWN) &kp LG(UP)      &kp LG(RIGHT)                     &mkp MB1 &mkp MB1                     &kp HOME     &kp PG_DN    &kp PG_UP    &kp END       &kp RCTRL &macro_dquotes
-                &macro_angles   &kp LGUI  &kp  C_PP      &kp C_PREV   &kp C_NEXT                          &trans &trans &mkp MB2 &mkp MB2 &trans &trans                    &kp C_VOL_DN &kp C_VOL_UP &kp C_MUTE    &kp RGUI  &macro_brackets
+                &trans       &trans  &trans  &trans  &trans   &trans    &trans                                                &trans &trans  &trans  &trans  &trans   &trans    &trans
+                &trans       &trans  &trans  &trans  &trans   &trans    &trans                                                &trans &trans  &trans  &trans  &trans   &trans    &trans
+                &lkp 5 TAB   &trans  &trans  &trans  &trans   &trans    &trans         &trans &trans &trans &trans            &trans &trans  &trans  &trans  &trans   &trans    &lkp 5 SQT
+                &trans       &trans  &trans  &trans  &trans   &trans                          &trans &trans                          &trans  &trans  &trans  &trans   &trans    &trans
+                &trans       &trans  &trans  &trans  &trans                &trans &trans &lkp 5 HOME &lkp 5 PG_DN &trans &trans              &trans  &trans  &trans   &trans    &trans
             >;
         };
-        mod {
-            display-name = "Mod";
+        default_mac {
+            display-name = "Def-Mac";
             bindings = <
-                &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bl BL_TOG                              &bl BL_TOG &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4 &bt BT_CLR
+                &trans       &trans  &trans  &trans  &trans   &trans    &trans                                                &trans &trans  &trans  &trans  &trans   &trans    &trans
+                &trans       &trans  &trans  &trans  &trans   &trans    &trans                                                &trans &trans  &trans  &trans  &trans   &trans    &trans
+                &lkp 6 TAB   &trans  &trans  &trans  &trans   &trans    &trans         &trans &trans &trans &trans            &trans &trans  &trans  &trans  &trans   &trans    &lkp 6 SQT
+                &trans       &trans  &trans  &trans  &trans   &trans                          &trans &trans                          &trans  &trans  &trans  &trans   &trans    &trans
+                &trans       &trans  &trans  &trans  &trans                &trans &trans &lkp 6 HOME &lkp 6 PG_DN &trans &trans              &trans  &trans  &trans   &trans    &trans
+            >;
+        };
+        default_num {
+            display-name = "Def-Num";
+            bindings = <
+                &none  &none  &none          &msc SCRL_UP   &none           &none &none                                                          &none &none &kp KP_NUM     &kp KP_DIVIDE   &kp KP_MULTIPLY &kp KP_EQUAL  &none
+                &none  &none  &msc SCRL_LEFT &mmv MOVE_UP   &msc SCRL_RIGHT &none &none                                                          &none &none &kp KP_N7      &kp KP_N8       &kp KP_N9       &kp KP_MINUS  &none
+                &none  &none  &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &none &none             &mkp 3 &none &none &mkp 3                    &none &none &kp KP_N4      &kp KP_N5       &kp KP_N6       &kp KP_PLUS   &none
+                &none  &none  &none          &msc SCRL_DOWN &none           &none                          &none &none                                 &none &kp KP_N1      &kp KP_N2       &kp KP_N3       &kp KP_ENTER  &none
+                &none  &none  &none          &none          &none                            &mkp 1 &mkp 2 &none &none &mkp 2 &mkp 1                         &kp KP_COMMA   &kp KP_NUMBER_0 &kp KP_DOT      &kp KP_ENTER  &none
+            >;
+        };
+        default_mod {
+            display-name = "Def-Mod";
+            bindings = <
+                &bt BT_CLR  &pfl0        &pfl1        &pfl2        &pfl3        &pfl4        &bl BL_TOG                              &bl BL_TOG &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4 &bt BT_CLR
                 &bootloader &none        &none        &none        &none        &none        &bl BL_SET 5                            &bl BL_INC &none         &none         &none         &none         &none         &bootloader
                 &sys_reset  &none        &none        &none        &none        &none        &bl BL_CYCLE  &none &none &none &none   &bl BL_DEC &none         &none         &none         &none         &none         &sys_reset
                 &none       &none        &none        &none        &none        &none                            &none &none                    &none         &none         &none         &none         &none         &none
                 &none       &none        &none        &bl BL_OFF   &bl BL_ON                         &none &none &none &none &none &none                      &bl BL_DEC    &bl BL_INC    &none         &none         &none
             >;
         };
-        num {
-            display-name = "Pad";
+        nav_win {
+            display-name = "Nav-win";
             bindings = <
-                &none  &trans  &trans  &trans  &trans  &trans &none                                                          &none &none &kp KP_NUM     &kp KP_DIVIDE   &kp KP_MULTIPLY &kp KP_EQUAL  &none
-                &none  &trans  &trans  &trans  &trans  &trans &none                                                          &none &none &kp KP_N7      &kp KP_N8       &kp KP_N9       &kp KP_MINUS  &none
-                &none  &trans  &trans  &trans  &trans  &trans &none             &trans &trans &trans &trans                  &none &none &kp KP_N4      &kp KP_N5       &kp KP_N6       &kp KP_PLUS   &none
-                &none  &trans  &trans  &trans  &trans  &trans                          &trans &trans                               &none &kp KP_N1      &kp KP_N2       &kp KP_N3       &kp KP_ENTER  &none
-                &none  &trans  &trans  &trans  &trans                     &trans &trans &none  &trans &trans &trans                      &kp KP_COMMA   &kp KP_NUMBER_0 &kp KP_DOT      &kp KP_ENTER  &none
+            &kp F10         &kp F1               &kp F2             &kp F3              &kp F4     &kp F5       &kp C_PP                                 &kp C_MUTE    &kp F6       &kp F7          &kp F8          &kp F9         &kp F10  &kp F12
+            &macro_backtick &kp LA(F4)           &Win_Select_Word   &macro_kill_to_end  &none      &kp LC(HOME) &kp C_NEXT                               &kp C_VOL_UP  &kp RC(LEFT) &kp RC(DOWN)    &kp RC(UP)      &kp RC(RIGHT)  &none    &macro_block
+            &macro_parens   &macro_kill_to_start &macro_select_line &macro_kill_line    &none      &kp LC(A)    &kp C_PREV  &trans &trans &trans &trans  &kp C_VOL_DN  &kp LEFT     &kp DOWN        &kp UP          &kp RIGHT      &none    &macro_braces
+            &macro_quotes   &Win_Undo            &Win_Cut           &Win_Copy           &Win_Paste &kp LC(END)                     &trans &trans                       &kp HOME     &kp PG_DN       &kp PG_UP       &kp END        &none    &macro_dquotes
+            &macro_angles   &none                &none              &macro_join_pln     &macro_join_nln               &trans &trans &trans &trans &trans &trans                     &macro_open_dln &macro_open_uln &none          &none    &macro_brackets
+            >;
+        };
+        nav_mac {
+            display-name = "Nav-mac";
+            bindings = <
+            &kp F10         &kp F1               &kp F2             &kp F3              &kp F4     &kp F5       &kp C_PP                                 &kp C_MUTE    &kp F6       &kp F7          &kp F8          &kp F9         &kp F10  &kp F12
+            &macro_backtick &kp LG(Q)            &Mac_Select_Word   &macro_kill_to_end  &none      &kp LG(UP)   &kp C_NEXT                               &kp C_VOL_UP  &kp RA(LEFT) &kp RA(DOWN)    &kp RA(UP)      &kp RA(RIGHT)  &none    &macro_block
+            &macro_parens   &macro_kill_to_start &macro_select_line &macro_kill_line    &none      &kp LG(A)    &kp C_PREV  &trans &trans &trans &trans  &kp C_VOL_DN  &kp LEFT     &kp DOWN        &kp UP          &kp RIGHT      &none    &macro_braces
+            &macro_quotes   &Mac_Undo            &Mac_Cut           &Mac_Copy           &Mac_Paste &kp LG(DOWN)                     &trans &trans                      &kp RG(LEFT) &kp PG_DN       &kp PG_UP       &kp RG(RIGHT)  &none    &macro_dquotes
+            &macro_angles   &none                &none              &macro_join_pln     &macro_join_nln               &trans &trans &trans &trans &trans &trans                     &macro_open_dln &macro_open_uln &none          &none    &macro_brackets
             >;
         };
         /* sym { */
