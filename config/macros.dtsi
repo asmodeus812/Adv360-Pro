@@ -54,6 +54,26 @@ macro_block: macro_block {
     bindings = <&kp GRAVE>, <&kp GRAVE>, <&kp GRAVE>, <&kp ENTER>, <&kp GRAVE>, <&kp GRAVE>, <&kp GRAVE>, <&kp UP>, <&kp END>;
     wait-ms = <10>;
 };
+macro_fatarrow: macro_fatarrow {
+    compatible = "zmk,behavior-macro";
+    label = "macro_fatarrow";
+    #binding-cells = <0>;
+    bindings = <
+        &kp EQUAL
+        &kp GT
+    >;
+    wait-ms = <10>;
+};
+macro_arrow: macro_arrow {
+    compatible = "zmk,behavior-macro";
+    label = "macro_arrow";
+    #binding-cells = <0>;
+    bindings = <
+        &kp MINUS
+        &kp GT
+    >;
+    wait-ms = <10>;
+};
 macro_kinesis: macro_kinesis {
     compatible = "zmk,behavior-macro";
     label = "macro_kinesis";
@@ -325,7 +345,7 @@ Mac_Select_Word: Mac_Select_Word {
     compatible = "zmk,behavior-macro";
     #binding-cells = <0>;
     bindings = <
-        &kp LC(LEFT)
+        &kp LA(LEFT)
         &kp LS(LA(RIGHT))
     >;
 };

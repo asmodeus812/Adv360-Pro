@@ -2,12 +2,12 @@
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 40    // default: 10
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/backlight.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/stp.h>
-#include <dt-bindings/zmk/backlight.h>
-#include <dt-bindings/zmk/pointing.h>
 
 #define STRINGIFY(x) #x
 #define EXPAND_AND_STRINGIFY(x) STRINGIFY(x)
@@ -101,10 +101,11 @@
         SUPER(lcwm, mo, caps_word, 135, 0,   0, KEYS_NONE, "hold-preferred")
         SUPER(lcwp, kp, caps_word, 135, 0,   0, KEYS_NONE, "hold-preferred")
 
-        SUPER(kpp, kp, kp, 145, 165, 25, KEYS_NONE,  "balanced")
-        SUPER(lkp, mo, kp, 145, 165, 25, KEYS_NONE,  "balanced")
-        SUPER(kpr, kp, kp, 145, 165, 25, KEYS_LEFT,  "balanced")
-        SUPER(kpl, kp, kp, 145, 165, 25, KEYS_RIGHT, "balanced")
+        SUPER(kpp, kp, kp, 135, 165, 25, KEYS_NONE,  "hold-preferred")
+        SUPER(lkp, mo, kp, 135, 165, 25, KEYS_NONE,  "tap-preferred")
+
+        SUPER(kpr, kp, kp, 130, 165, 25, KEYS_LEFT,  "balanced")
+        SUPER(kpl, kp, kp, 130, 165, 25, KEYS_RIGHT, "balanced")
 
         MORPH(one,   EXCL,   N1, MOD_LSFT|MOD_RSFT)
         MORPH(two,   AT,     N2, MOD_LSFT|MOD_RSFT)
@@ -183,21 +184,21 @@
         nav_win {
             display-name = "Nav-win";
             bindings = <
-            &kp F10         &kp F1               &kp F2             &kp F3              &kp F4     &kp F5       &kp C_PP                                 &kp C_MUTE    &kp F6       &kp F7          &kp F8          &kp F9         &kp F10  &kp F12
-            &macro_backtick &kp LA(F4)           &Win_Select_Word   &macro_kill_to_end  &none      &kp LC(HOME) &kp C_NEXT                               &kp C_VOL_UP  &kp RC(LEFT) &kp RC(DOWN)    &kp RC(UP)      &kp RC(RIGHT)  &none    &macro_block
-            &macro_parens   &macro_kill_to_start &macro_select_line &macro_kill_line    &none      &kp LC(A)    &kp C_PREV  &trans &trans &trans &trans  &kp C_VOL_DN  &kp LEFT     &kp DOWN        &kp UP          &kp RIGHT      &none    &macro_braces
-            &macro_quotes   &Win_Undo            &Win_Cut           &Win_Copy           &Win_Paste &kp LC(END)                     &trans &trans                       &kp HOME     &kp PG_DN       &kp PG_UP       &kp END        &none    &macro_dquotes
-            &macro_angles   &none                &none              &macro_join_pln     &macro_join_nln               &trans &trans &trans &trans &trans &trans                     &macro_open_dln &macro_open_uln &none          &none    &macro_brackets
+            &kp F10         &kp F1               &kp F2             &kp F3              &kp F4          &kp F5       &kp C_PP                                 &kp C_MUTE    &kp F6       &kp F7          &kp F8          &kp F9         &kp F10  &kp F12
+            &macro_backtick &kp LA(F4)           &Win_Select_Word   &macro_kill_to_end  &kp LC(BSPC)    &kp LC(HOME) &kp C_NEXT                               &kp C_VOL_UP  &kp RC(LEFT) &kp RC(DOWN)    &kp RC(UP)      &kp RC(RIGHT)  &none    &macro_block
+            &macro_parens   &macro_kill_to_start &macro_select_line &macro_kill_line    &kp LC(DEL)     &kp LC(A)    &kp C_PREV  &trans &trans &trans &trans  &kp C_VOL_DN  &kp LEFT     &kp DOWN        &kp UP          &kp RIGHT      &none    &macro_braces
+            &macro_quotes   &Win_Undo            &Win_Cut           &Win_Copy           &Win_Paste      &kp LC(END)                     &trans &trans                       &kp HOME     &kp PG_DN       &kp PG_UP       &kp END        &none    &macro_dquotes
+            &macro_angles   &none                &macro_fatarrow   &macro_join_pln      &macro_join_nln                    &trans &trans &trans &trans &trans &trans                     &macro_open_dln &macro_open_uln &macro_arrow   &none    &macro_brackets
             >;
         };
         nav_mac {
             display-name = "Nav-mac";
             bindings = <
-            &kp F10         &kp F1               &kp F2             &kp F3              &kp F4     &kp F5       &kp C_PP                                 &kp C_MUTE    &kp F6       &kp F7          &kp F8          &kp F9         &kp F10  &kp F12
-            &macro_backtick &kp LG(Q)            &Mac_Select_Word   &macro_kill_to_end  &none      &kp LG(UP)   &kp C_NEXT                               &kp C_VOL_UP  &kp RA(LEFT) &kp RA(DOWN)    &kp RA(UP)      &kp RA(RIGHT)  &none    &macro_block
-            &macro_parens   &macro_kill_to_start &macro_select_line &macro_kill_line    &none      &kp LG(A)    &kp C_PREV  &trans &trans &trans &trans  &kp C_VOL_DN  &kp LEFT     &kp DOWN        &kp UP          &kp RIGHT      &none    &macro_braces
-            &macro_quotes   &Mac_Undo            &Mac_Cut           &Mac_Copy           &Mac_Paste &kp LG(DOWN)                     &trans &trans                      &kp RG(LEFT) &kp PG_DN       &kp PG_UP       &kp RG(RIGHT)  &none    &macro_dquotes
-            &macro_angles   &none                &none              &macro_join_pln     &macro_join_nln               &trans &trans &trans &trans &trans &trans                     &macro_open_dln &macro_open_uln &none          &none    &macro_brackets
+            &kp F10         &kp F1               &kp F2             &kp F3              &kp F4           &kp F5       &kp C_PP                                 &kp C_MUTE    &kp F6       &kp F7          &kp F8          &kp F9         &kp F10  &kp F12
+            &macro_backtick &kp LG(Q)            &Mac_Select_Word   &macro_kill_to_end  &kp LC(BSPC)     &kp LG(UP)   &kp C_NEXT                               &kp C_VOL_UP  &kp RA(LEFT) &kp RA(DOWN)    &kp RA(UP)      &kp RA(RIGHT)  &none    &macro_block
+            &macro_parens   &macro_kill_to_start &macro_select_line &macro_kill_line    &kp LA(DEL)      &kp LG(A)    &kp C_PREV  &trans &trans &trans &trans  &kp C_VOL_DN  &kp LEFT     &kp DOWN        &kp UP          &kp RIGHT      &none    &macro_braces
+            &macro_quotes   &Mac_Undo            &Mac_Cut           &Mac_Copy           &Mac_Paste       &kp LG(DOWN)                     &trans &trans                      &kp RG(LEFT) &kp PG_DN       &kp PG_UP       &kp RG(RIGHT)  &none    &macro_dquotes
+            &macro_angles   &none                &none              &macro_join_pln     &macro_join_nln                     &trans &trans &trans &trans &trans &trans                     &macro_open_dln &macro_open_uln &none          &none    &macro_brackets
             >;
         };
         /* sym { */
