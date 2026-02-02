@@ -9,6 +9,7 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/stp.h>
 
+/* #define DEFAULT_KEYMAP 1 */
 #define STRINGIFY(x) #x
 #define EXPAND_AND_STRINGIFY(x) STRINGIFY(x)
 
@@ -128,10 +129,11 @@
         #include "version.dtsi"
     };
 
+#ifdef DEFAULT_KEYMAP
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        default_base {
             display-name = "Def-Base";
             bindings = <
                 &lkp  4 PSCRN &kp N1     &kp N2    &kp N3    &kp N4     &kp N5    &mo 3                                                                           &mo 4           &kp N6  &kp N7     &kp N8     &kp N9      &kp N0      &lkp 4 BSPC
@@ -142,7 +144,7 @@
             >;
         };
         default_win {
-            display-name = "Def-Mac";
+            display-name = "Def-Win";
             bindings = <
                 &trans       &trans  &trans  &trans  &trans   &trans    &trans                                                &trans &trans  &trans  &trans  &trans   &trans    &trans
                 &trans       &trans  &trans  &trans  &trans   &trans    &trans                                                &trans &trans  &trans  &trans  &trans   &trans    &trans
@@ -184,15 +186,15 @@
         default_med {
             display-name = "Def-Med";
             bindings = <
-                &none &none             &none         &none           &none                 &none                  &none                   &none &none       &none          &none         &none          &none                &none
-                &none &kp C_AL_JOURNAL  &kp C_AL_WORD &kp C_AL_EMAIL  &kp C_AL_TEXT_EDITOR  &kp C_AL_TASK_MANAGER  &none                   &none &kp C_RW    &kp C_PAUSE    &kp C_PLAY    &kp C_FF       &kp C_STOP_EJECT     &none
-                &none &kp C_AL_CALC &kp C_AL_SHEET &kp C_AL_DOCS &kp C_AL_FILES &kp C_AL_TEXT_EDITOR &bl BL_CYCLE  &none &none &none &none &none &kp C_PREV  &kp C_VOL_DN   &kp C_VOL_UP  &kp C_NEXT     &kp C_MUTE           &none
-                &none &kp C_AL_IMAGES   &kp C_AL_CONTROL_PANEL &kp C_AL_CAL &kp C_AL_MUSIC   &kp C_AL_WWW                &none &none             &kp C_REC   &kp C_SHUFFLE  &kp C_REPEAT  &kp C_CAPTIONS &kp C_DATA_ON_SCREEN &none
-                &none &kp C_AL_SELECT_TASK &kp C_AL_HELP  &kp C_AL_PREV_TASK &kp C_AL_NEXT_TASK              &none &none &none &none &none &none             &kp C_BRI_DN   &kp C_BRI_UP  &kp C_SNAPSHOT &none                &none
+                &none &none                &none                   &none              &none                 &none                  &none                             &none  &none       &none          &none         &none          &none                &none
+                &none &kp C_AL_JOURNAL     &kp C_AL_WORD           &kp C_AL_EMAIL     &kp C_AL_TEXT_EDITOR  &kp C_AL_TASK_MANAGER  &none                             &none  &kp C_RW    &kp C_PAUSE    &kp C_PLAY    &kp C_FF       &kp C_STOP_EJECT     &none
+                &none &kp C_AL_CALC        &kp C_AL_SHEET          &kp C_AL_DOCS      &kp C_AL_FILES        &kp C_AL_TEXT_EDITOR   &none  &trans &none &none &trans  &none  &kp C_PREV  &kp C_VOL_DN   &kp C_VOL_UP  &kp C_NEXT     &kp C_MUTE           &none
+                &none &kp C_AL_IMAGES      &kp C_AL_CONTROL_PANEL  &kp C_AL_CAL       &kp C_AL_MUSIC        &kp C_AL_WWW                        &none &none                 &kp C_REC   &kp C_SHUFFLE  &kp C_REPEAT  &kp C_CAPTIONS &kp C_DATA_ON_SCREEN &none
+                &none &kp C_AL_SELECT_TASK &kp C_AL_HELP           &kp C_AL_PREV_TASK &kp C_AL_NEXT_TASK                          &trans &trans &none &none &trans &trans               &kp C_BRI_DN   &kp C_BRI_UP  &kp C_SNAPSHOT &none                &none
             >;
         };
         win_nav {
-            display-name = "Nav-win";
+            display-name = "Nav-Win";
             bindings = <
                 &kp F10         &kp F1               &kp F2             &kp F3              &kp F4          &kp F5       &kp C_PP                                 &kp C_MUTE    &kp F6       &kp F7          &kp F8          &kp F9         &kp F10  &kp F12
                 &macro_backtick &kp LA(F4)           &Win_Select_Word   &macro_kill_to_end  &kp LC(BSPC)    &kp LC(HOME) &kp C_NEXT                               &kp C_VOL_UP  &kp RC(LEFT) &kp RC(DOWN)    &kp RC(UP)      &kp RC(RIGHT)  &none    &macro_block
@@ -202,7 +204,7 @@
             >;
         };
         mac_nav {
-            display-name = "Nav-mac";
+            display-name = "Nav-Mac";
             bindings = <
                 &kp F10         &kp F1               &kp F2             &kp F3              &kp F4           &kp F5       &kp C_PP                                 &kp C_MUTE    &kp F6       &kp F7          &kp F8          &kp F9         &kp F10  &kp F12
                 &macro_backtick &kp LG(Q)            &Mac_Select_Word   &macro_kill_to_end  &kp LC(BSPC)     &kp LG(UP)   &kp C_NEXT                               &kp C_VOL_UP  &kp RA(LEFT) &kp RA(DOWN)    &kp RA(UP)      &kp RA(RIGHT)  &none    &macro_block
@@ -212,4 +214,100 @@
             >;
         };
     };
+#else
+    keymap {
+        compatible = "zmk,keymap";
+
+        default_layer {
+            display-name = "Def-Base";
+            bindings = <
+                &none         &none        &none       &none       &none        &none     &none                                                          &none   &none   &none         &none       &none       &none           &none
+                &lcwm 5 0     &kp Q        &kp W       &kp E       &kp R        &kp T     &none                                                          &none   &kp Y   &kp U         &kp I       &kp O       &kp P           &lkp 5 DEL
+                &lkp  7 TAB   &kpl HYPER A &kpl LGUI S &kpl LALT D &kpl LCTRL F &kp G     &none           &lkp 6 TAB &none &none &lcwp DEL 6             &none   &kp H   &kpr RCTRL J  &kpr RALT K &kpr RGUI L &kpr HYPER SEMI  &lkp 7 SQT
+                &lkp  4 BSLH  &kp Z        &kp X       &kp C       &kp V        &kp B                                &none &none                                 &kp N   &kp M         &kp COMMA   &kp DOT     &kp FSLH        &lkp 4 GRAVE
+                &none         &none        &none       &none       &none                  &kpl LSHFT BSPC &lkp 3 ESC &none &none &lkp 3 ENTER &kpr RSHFT SPACE           &none         &none       &none       &none           &none
+            >;
+        };
+        default_win {
+            display-name = "Def-Win";
+            bindings = <
+                &none        &none   &none   &none   &none    &none     &none                                                 &none  &none   &none   &none   &none    &none     &none
+                &trans       &trans  &trans  &trans  &trans   &trans    &none                                                 &none  &trans  &trans  &trans  &trans   &trans    &trans
+                &lkp 7 TAB   &trans  &trans  &trans  &trans   &trans    &none          &trans &none &none &trans              &none  &trans  &trans  &trans  &trans   &trans    &lkp 7 SQT
+                &trans       &trans  &trans  &trans  &trans   &trans                          &none &none                            &trans  &trans  &trans  &trans   &trans    &trans
+                &none        &none   &none   &none   &none                      &trans &trans &none &none &trans &trans                      &none   &none   &none    &none     &none
+            >;
+        };
+        default_mac {
+            display-name = "Def-Mac";
+            bindings = <
+                &none        &none   &none   &none   &none    &none     &none                                                &none  &none   &none   &none   &none    &none     &none
+                &trans       &trans  &trans  &trans  &trans   &trans    &none                                                &none  &trans  &trans  &trans  &trans   &trans    &trans
+                &lkp 8 TAB   &trans  &trans  &trans  &trans   &trans    &none          &trans &none &none &trans             &none  &trans  &trans  &trans  &trans   &trans    &lkp 8 SQT
+                &trans       &trans  &trans  &trans  &trans   &trans                          &none &none                            &trans &trans  &trans  &trans   &trans    &trans
+                &none        &none   &none   &none   &none                     &trans &trans  &none &none &trans &trans                     &none   &none   &none    &none     &none
+            >;
+        };
+        default_sym {
+            display-name = "Def-Sym";
+            bindings = <
+                &none  &none        &none      &none      &none      &none      &none                                 &none &none      &none         &none        &none        &none         &none
+                &trans &kp N1       &kp N2     &kp N3     &kp N4     &kp N5     &none                                 &none &kp N6     &kp N7        &kp N8       &kp N9       &kp N0        &trans
+                &trans &kp LS(N1)   &kp LS(N2) &kp LS(N3) &kp LS(N4) &kp LS(N5) &none   &trans &none  &none  &trans   &none &kp LS(N6) &kp LS(N7)    &kp LS(N8)   &kp LS(N9)   &kp LS(N0)    &trans
+                &trans &kp LS(BSLH) &kp LBKT   &kp RBKT   &kp EQUAL  &kp LS(EQUAL)             &none  &none                 &kp MINUS  &kp LS(MINUS) &kp LS(LBKT) &kp LS(RBKT) &kp LS(GRAVE) &trans
+                &none  &none        &none      &none      &none                  &trans &trans &none  &none &trans  &trans             &none         &none        &none        &none         &none
+            >;
+        };
+        default_num {
+            display-name = "Def-Num";
+            bindings = <
+                &none  &none  &none          &none          &none           &none &none                                            &none &none           &none      &none      &none      &none         &none
+                &trans &none  &msc SCRL_LEFT &mmv MOVE_UP   &msc SCRL_RIGHT &none &none                                            &none &kp KP_MULTIPLY &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_MINUS  &trans
+                &trans &none  &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &none &none        &mkp 3 &none &none &mkp 3           &none &kp KP_DIVIDE   &kp KP_N4  &kp KP_N5  &kp KP_N6  &kp KP_PLUS   &trans
+                &trans &none  &none          &msc SCRL_DOWN &none           &none                     &none &none                        &kp KP_DOT      &kp KP_N1  &kp KP_N2  &kp KP_N3  &kp KP_N0     &trans
+                &none  &none  &none          &none          &none                       &mkp 1 &mkp 2 &none &none &mkp 2 &mkp 1                          &none      &none      &none      &none         &none
+            >;
+        };
+        default_med {
+            display-name = "Def-Med";
+            bindings = <
+                &none  &none            &none                  &none          &none                 &none                  &none                                &none &none      &none         &none         &none            &none                &none
+                &trans &kp C_AL_JOURNAL &kp C_AL_WORD          &kp C_AL_EMAIL &kp C_AL_TEXT_EDITOR  &kp C_AL_TASK_MANAGER  &none                                &none &kp C_RW   &kp C_PAUSE   &kp C_PLAY    &kp C_FF         &kp C_STOP_EJECT     &trans
+                &trans &kp C_AL_CALC    &kp C_AL_SHEET         &kp C_AL_DOCS  &kp C_AL_FILES        &kp C_AL_TEXT_EDITOR   &none  &trans &none &none  &none     &none &kp C_PREV &kp C_VOL_DN  &kp C_VOL_UP  &kp C_NEXT       &kp C_MUTE           &trans
+                &trans &kp C_AL_IMAGES  &kp C_AL_CONTROL_PANEL &kp C_AL_CAL   &kp C_AL_MUSIC        &kp C_AL_WWW                         &none &none                  &kp C_REC  &kp C_SHUFFLE &kp C_REPEAT  &kp C_CAPTIONS   &kp C_DATA_ON_SCREEN &trans
+                &none  &none            &none                  &none          &none                                        &trans &trans &none &none &trans &trans               &none         &none         &none            &none                &none
+            >;
+        };
+        default_mod {
+            display-name = "Def-Mod";
+            bindings = <
+                &none       &none  &none  &none       &none       &none  &none                                       &none  &none         &none         &none         &none          &none        &none
+                &bt BT_CLR  &pfl0  &pfl1  &pfl2       &pfl3       &pfl4  &none                                       &none  &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4 &bt BT_CLR
+                &bootloader &none  &none  &none       &none       &none  &none         &none &none &none &none       &none  &bl BL_TOG    &bl BL_DEC    &bl BL_INC    &bl BL_CYCLE  &bl BL_SET 5  &bootloader
+                &sys_reset  &none  &none  &bl BL_OFF  &bl BL_ON   &none                      &none &none                    &none         &none         &none         &none         &none         &sys_reset
+                &none       &none  &none  &none       &none                      &none &none &none &none &none &none                      &none         &none         &none         &none         &none
+            >;
+        };
+        win_nav {
+            display-name = "Nav-win";
+            bindings = <
+                &none    &none                &none              &none               &none           &none        &none                               &none  &none        &none           &none           &none          &none    &none
+                &trans   &kp LA(F4)           &Win_Select_Word   &macro_kill_to_end  &kp LC(BSPC)    &kp LC(HOME) &none                               &none  &kp RC(LEFT) &kp RC(DOWN)    &kp RC(UP)      &kp RC(RIGHT)  &none    &trans
+                &trans   &macro_kill_to_start &macro_select_line &macro_kill_line    &kp LC(DEL)     &kp LC(A)    &none  &trans &none &none &trans    &none  &kp LEFT     &kp DOWN        &kp UP          &kp RIGHT      &none    &trans
+                &trans   &Win_Undo            &Win_Cut           &Win_Copy           &Win_Paste      &kp LC(END)                &none &none                  &kp HOME     &kp PG_DN       &kp PG_UP       &kp END        &none    &trans
+                &none    &none                &none              &none               &none                        &trans &trans &none &none &trans &trans                 &none           &none           &none          &none    &none
+            >;
+        };
+        mac_nav {
+            display-name = "Nav-mac";
+            bindings = <
+                &none    &none                &none              &none               &none           &none        &none                               &none  &none        &none           &none           &none          &none    &none
+                &trans   &kp LA(F4)           &Mac_Select_Word   &macro_kill_to_end  &kp LC(BSPC)    &kp LC(HOME) &none                               &none  &kp RC(LEFT) &kp RC(DOWN)    &kp RC(UP)      &kp RC(RIGHT)  &none    &trans
+                &trans   &macro_kill_to_start &macro_select_line &macro_kill_line    &kp LC(DEL)     &kp LC(A)    &none  &trans &none &none &trans    &none  &kp LEFT     &kp DOWN        &kp UP          &kp RIGHT      &none    &trans
+                &trans   &Mac_Undo            &Mac_Cut           &Mac_Copy           &Mac_Paste      &kp LC(END)                &none &none                  &kp HOME     &kp PG_DN       &kp PG_UP       &kp END        &none    &trans
+                &none    &none                &none              &none               &none                        &trans &trans &none &none &trans &trans                 &none           &none           &none          &none    &none
+            >;
+        };
+    };
+#endif
 };
