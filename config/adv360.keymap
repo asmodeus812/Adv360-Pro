@@ -114,7 +114,7 @@
             bindings = <
                 &none         &none        &none       &none       &none        &none     &none                                                          &none   &none   &none         &none       &none       &none           &none
                 &lcwm 5 0     &kp Q        &kp W       &kp E       &kp R        &kp T     &none                                                          &none   &kp Y   &kp U         &kp I       &kp O       &kp P           &lkp 5 DEL
-                &lkp  7 TAB   &kpl HYPER A &kpl LGUI S &kpl LALT D &kpl LCTRL F &kp G     &none           &lkp 6 TAB &none &none &lkp DEL 6              &none   &kp H   &kpr RCTRL J  &kpr RALT K &kpr RGUI L &kpr HYPER SEMI  &lkp 7 SQT
+                &lkp  7 TAB   &hml HYPER A &hml LGUI S &hml LALT D &hml LCTRL F &kp G     &none           &lkp 6 TAB &none &none &lkp DEL 6              &none   &kp H   &hmr RCTRL J  &hmr RALT K &hmr RGUI L &hmr HYPER SEMI &lkp 7 SQT
                 &lkp  4 BSLH  &kp Z        &kp X       &kp C       &kp V        &kp B                                &none &none                                 &kp N   &kp M         &kp COMMA   &kp DOT     &kp FSLH        &lkp 4 GRAVE
                 &none         &none        &none       &none       &none                  &kpl LSHFT BSPC &lkp 3 ESC &none &none &lkp 3 ENTER &kpr RSHFT SPACE           &none         &none       &none       &none           &none
             >;
@@ -172,11 +172,11 @@
         default_mod {
             display-name = "Def-Mod";
             bindings = <
-                &none       &none  &none  &none       &none       &none  &none                                       &none  &none         &none         &none         &none          &none        &none
-                &bt BT_CLR  &pfl0  &pfl1  &pfl2       &pfl3       &pfl4  &none                                       &none  &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4 &bt BT_CLR
-                &bootloader &none  &none  &none       &none       &none  &none         &none &none &none &none       &none  &bl BL_TOG    &bl BL_DEC    &bl BL_INC    &bl BL_CYCLE  &bl BL_SET 5  &bootloader
-                &sys_reset  &none  &none  &bl BL_OFF  &bl BL_ON   &none                      &none &none                    &none         &none         &none         &none         &none         &sys_reset
-                &none       &none  &none  &none       &none                      &none &none &none &none &none &none                      &none         &none         &none         &none         &none
+                &none       &none  &none  &none  &none  &none  &none                                       &none  &none         &none         &none         &none          &none        &none
+                &bt BT_CLR  &pfl0  &pfl1  &pfl2  &pfl3  &pfl4  &none                                       &none  &bt BT_DISC 0 &bt BT_DISC 1 &bt BT_DISC 2 &bt BT_DISC 3 &bt BT_DISC 4 &bt BT_CLR
+                &bootloader &none  &none  &none  &none  &none  &none         &none &none &none &none       &none  &bl BL_TOG    &bl BL_DEC    &bl BL_INC    &bl BL_CYCLE  &bl BL_SET 5  &bootloader
+                &sys_reset  &none  &none  &none  &none  &none                      &none &none                    &none         &bl BL_OFF    &bl BL_ON     &none         &none         &sys_reset
+                &none       &none  &none  &none  &none                 &none &none &none &none &none &none                      &none         &none         &none         &none         &none
             >;
         };
         win_nav {

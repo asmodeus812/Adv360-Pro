@@ -19,7 +19,6 @@
         bindings = <&FIRST>, <&SECOND>; \
         require-prior-idle-ms = <RPI>; \
         hold-trigger-key-positions = <KEYS>; \
-        hold-while-undecided-linger; \
         __VA_ARGS__ \
     };
 
