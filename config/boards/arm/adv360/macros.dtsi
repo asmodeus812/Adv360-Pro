@@ -42,7 +42,7 @@
     display-name = "Windows Cut";
   };
 
-  Win_Copy: Windows_Copy {
+  Win_copy: Windows_copy {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings = <&kp LC(C)>;
@@ -105,7 +105,7 @@
       display-name = "Mac Cut";
   };
 
-  Mac_Copy: Mac_Copy {
+  Mac_copy: Mac_copy {
       compatible = "zmk,behavior-macro";
       #binding-cells = <0>;
       bindings = <&kp LG(C)>;
