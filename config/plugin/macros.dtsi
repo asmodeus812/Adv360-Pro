@@ -1,48 +1,48 @@
-macro_quotes: macro_quotes {
+mac_quotes: mac_quotes {
     compatible = "zmk,behavior-macro";
-    label = "macro_quotes";
+    label = "mac_quotes";
     #binding-cells = <0>;
     bindings = <&kp SQT>, <&kp SQT>, <&kp LEFT>;
     wait-ms = <10>;
 };
-macro_dquotes: macro_dquotes {
+mac_dquotes: mac_dquotes {
     compatible = "zmk,behavior-macro";
-    label = "macro_dquotes";
+    label = "mac_dquotes";
     #binding-cells = <0>;
     bindings = <&kp DQT>, <&kp DQT>, <&kp LEFT>;
     wait-ms = <10>;
 };
-macro_braces: macro_braces {
+mac_braces: mac_braces {
     compatible = "zmk,behavior-macro";
-    label = "macro_braces";
+    label = "mac_braces";
     #binding-cells = <0>;
     bindings = <&kp LBRC>, <&kp RBRC>, <&kp LEFT>;
     wait-ms = <10>;
 };
-macro_parens: macro_parens {
+mac_parens: mac_parens {
     compatible = "zmk,behavior-macro";
-    label = "macro_parens";
+    label = "mac_parens";
     #binding-cells = <0>;
     bindings = <&kp LPAR>, <&kp RPAR>, <&kp LEFT>;
     wait-ms = <10>;
 };
-macro_brackets: macro_brackets {
+mac_brackets: mac_brackets {
     compatible = "zmk,behavior-macro";
-    label = "macro_brackets";
+    label = "mac_brackets";
     #binding-cells = <0>;
     bindings = <&kp LBKT>, <&kp RBKT>, <&kp LEFT>;
     wait-ms = <10>;
 };
-macro_angles: macro_angles {
+mac_angles: mac_angles {
     compatible = "zmk,behavior-macro";
-    label = "macro_angles";
+    label = "mac_angles";
     #binding-cells = <0>;
     bindings = <&kp LT>, <&kp GT>, <&kp LEFT>;
     wait-ms = <10>;
 };
-macro_backtick: macro_backtick {
+mac_backtick: mac_backtick {
     compatible = "zmk,behavior-macro";
-    label = "macro_backtick";
+    label = "mac_backtick";
     #binding-cells = <0>;
     bindings = <&kp GRAVE>, <&kp GRAVE>, <&kp LEFT>;
     wait-ms = <10>;
@@ -54,23 +54,23 @@ win_block: win_block {
     bindings = <&kp GRAVE>, <&kp GRAVE>, <&kp GRAVE>, <&kp ENTER>, <&kp GRAVE>, <&kp GRAVE>, <&kp GRAVE>, <&kp UP>, <&kp END>;
     wait-ms = <10>;
 };
-macro_fatarrow: macro_fatarrow {
+mac_fatarrow: mac_fatarrow {
     compatible = "zmk,behavior-macro";
-    label = "macro_fatarrow";
+    label = "mac_fatarrow";
     #binding-cells = <0>;
     bindings = <&kp EQUAL>, <&kp GT>, <&kp SPACE>, <&kp LBRC>, <&kp RBRC>, <&kp LEFT>;
     wait-ms = <10>;
 };
-macro_arrow: macro_arrow {
+mac_arrow: mac_arrow {
     compatible = "zmk,behavior-macro";
-    label = "macro_arrow";
+    label = "mac_arrow";
     #binding-cells = <0>;
     bindings = <&kp MINUS>, <&kp GT>, <&kp SPACE>, <&kp LBRC>, <&kp RBRC>, <&kp LEFT>;
     wait-ms = <10>;
 };
-macro_kinesis: macro_kinesis {
+mac_kinesis: mac_kinesis {
     compatible = "zmk,behavior-macro";
-    label = "macro_kinesis";
+    label = "mac_kinesis";
     #binding-cells = <0>;
     bindings = <&kp LS(K)>, <&kp I>, <&kp N>, <&kp E>, <&kp S>, <&kp I>, <&kp S>;
     wait-ms = <10>;

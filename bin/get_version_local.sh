@@ -65,8 +65,9 @@ echo $formatted_result
 # Create new macro to define version, overwrite previous one
 
 echo '#define VERSION_MACRO' > "config/version.dtsi"
-echo 'macro_ver: macro_ver {' >> "config/version.dtsi"
+echo 'mac_ver: mac_ver {' >> "config/version.dtsi"
 echo 'compatible = "zmk,behavior-macro";' >> "config/version.dtsi"
+echo 'label = "mac_ver";' >> "config/version.dtsi"
 echo '#binding-cells = <0>;' >> "config/version.dtsi"
 echo "bindings = $formatted_result;" >> "config/version.dtsi"
 echo '};' >> "config/version.dtsi"

@@ -1,12 +1,12 @@
-SUPER(lcwm, mo, caps_word, 135, 0,   0, KEYS_NONE, "hold-preferred")
-SUPER(lcwp, kp, caps_word, 135, 0,   0, KEYS_NONE, "hold-preferred")
+SUPER(lcwm, mo, caps_word, 130, 0,   0, KEYS_NONE, "hold-preferred")
+SUPER(lcwp, kp, caps_word, 130, 0,   0, KEYS_NONE, "hold-preferred")
 
-SUPER(kpp, kp, kp, 135, 165, 25, KEYS_NONE,  "hold-preferred")
-SUPER(lkp, mo, kp, 135, 165, 25, KEYS_NONE,  "tap-preferred")
-SUPER(lsk, mo, sk, 135, 165, 25, KEYS_NONE,  "tap-preferred")
+SUPER(kpp, kp, kp, 130, 160, 25, KEYS_NONE,  "hold-preferred")
+SUPER(lkp, mo, kp, 130, 160, 25, KEYS_NONE,  "tap-preferred")
+SUPER(lsk, mo, sk, 130, 160, 25, KEYS_NONE,  "tap-preferred")
 
-SUPER(kpr, kp, kp, 130, 165, 25, KEYS_LEFT,  "balanced", hold-while-undecided-linger;)
-SUPER(kpl, kp, kp, 130, 165, 25, KEYS_RIGHT, "balanced", hold-while-undecided-linger;)
+SUPER(kpr, kp, kp, 125, 160, 25, KEYS_LEFT,  "balanced", hold-while-undecided-linger;)
+SUPER(kpl, kp, kp, 125, 160, 25, KEYS_RIGHT, "balanced", hold-while-undecided-linger;)
 
 /* SUPER(hmr, kp, kp, 250, 170, 100, KEYS_LEFT,  "balanced", hold-trigger-on-release; hold-while-undecided-linger;) */
 /* SUPER(hml, kp, kp, 250, 170, 100, KEYS_RIGHT, "balanced", hold-trigger-on-release; hold-while-undecided-linger;) */
